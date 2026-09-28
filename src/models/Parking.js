@@ -23,12 +23,16 @@ class Parking {
   }
 
   findNumberOfSpaces(userType, lookupKey) {
-    return this.parking.parkingProperties?.length > 0
-      ? this.parking.parkingProperties
-          .slice()
-          .shift()
-          .spaces.find((v) => v.parkingUserType === userType)[lookupKey]
-      : 0;
+    if (!(this.parking.parkingProperties?.length > 0)) {
+      return 0;
+    }
+
+    const spaces = this.parking.parkingProperties
+      .slice()
+      .shift()
+      .spaces?.find((v) => v.parkingUserType === userType);
+
+    return spaces ? spaces[lookupKey] : 0;
   }
 
   get numberOfSpaces() {
