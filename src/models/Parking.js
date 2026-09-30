@@ -27,6 +27,8 @@ class Parking {
       return 0;
     }
 
+    // A parking does not have to hold an entry for every user type. Abzu
+    // itself writes a bicycle parking with an allUsers entry alone.
     const spaces = this.parking.parkingProperties
       .slice()
       .shift()
@@ -54,11 +56,11 @@ class Parking {
     return this.findNumberOfSpaces("registeredDisabled", "numberOfSpaces");
   }
 
-  get parkingType() {
-    if (this.parking.parkingType) {
-      return this.parking.parkingType;
-    }
+  get storedParkingType() {
+    return this.parking.parkingType;
+  }
 
+  get guessedParkingType() {
     if (this.parking.parkingVehicleTypes.includes(PARKING_VEHICLE_TYPE.CAR)) {
       return PARKING_TYPE.PARK_AND_RIDE;
     }
@@ -74,8 +76,33 @@ class Parking {
     return PARKING_TYPE.UNKNOWN;
   }
 
+  get parkingType() {
+    return this.storedParkingType || this.guessedParkingType;
+  }
+
+  // Which fields does Tiamat hold for this parking? A stored type is a NeTEx
+  // type, and every NeTEx parking carries the full field set. Only the guess
+  // can answer "reduced", and only when Tiamat stores no type at all.
+  get hasFullFieldSet() {
+    if (this.storedParkingType) {
+      return true;
+    }
+
+    return this.guessedParkingType === PARKING_TYPE.PARK_AND_RIDE;
+  }
+
+  // What vehicle is this parking for? NeTEx answers this with the vehicle
+  // types, never with the parking type.
+  get isForPedalCycle() {
+    return (
+      this.parking.parkingVehicleTypes?.includes(
+        PARKING_VEHICLE_TYPE.PEDAL_CYCLE,
+      ) ?? false
+    );
+  }
+
   get isParkAndRide() {
-    return this.parkingType === PARKING_TYPE.PARK_AND_RIDE;
+    return this.hasFullFieldSet;
   }
 
   toClient() {
@@ -85,6 +112,8 @@ class Parking {
       id: parking.id,
       name: getIn(parking, ["name", "value"], ""),
       parkingType: this.parkingType,
+      hasFullFieldSet: this.hasFullFieldSet,
+      isForPedalCycle: this.isForPedalCycle,
       parkingPaymentProcess: parking.parkingPaymentProcess,
       rechargingAvailable: parking.rechargingAvailable,
       numberOfSpaces: this.isParkAndRide ? this.numberOfSpaces : null,
