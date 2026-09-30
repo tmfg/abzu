@@ -102,6 +102,7 @@ class Parking {
       hasExpired: hasExpired(parking.validBetween),
       validBetween: parking.validBetween,
       accessibilityAssessment: parking.accessibilityAssessment,
+      parkingProperties: parking.parkingProperties,
     };
     let coordinates = getIn(parking, ["geometry", "coordinates"], null);
 
