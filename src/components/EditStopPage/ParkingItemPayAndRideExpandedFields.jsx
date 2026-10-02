@@ -118,6 +118,8 @@ const ParkingItemPayAndRideExpandedFields = (props) => {
     numberOfSpaces,
     numberOfSpacesWithRechargePoint,
     numberOfSpacesForRegisteredDisabledUserType,
+    numberOfSpacesIsAmbiguous,
+    numberOfSpacesForRegisteredDisabledUserTypeIsAmbiguous,
     handleSetParkingLayout,
     handleSetParkingPaymentProcess,
     handleSetRechargingAvailable,
@@ -268,7 +270,7 @@ const ParkingItemPayAndRideExpandedFields = (props) => {
           <LocalParking style={parkingIconStyles()} />
           <TextField
             variant="standard"
-            disabled={disabled || hasExpired}
+            disabled={disabled || hasExpired || numberOfSpacesIsAmbiguous}
             label={formatMessage({
               id: "parking_number_of_spaces",
             })}
@@ -292,7 +294,11 @@ const ParkingItemPayAndRideExpandedFields = (props) => {
             label={formatMessage({
               id: "parking_number_of_spaces_for_registered_disabled_user_type",
             })}
-            disabled={disabled || hasExpired}
+            disabled={
+              disabled ||
+              hasExpired ||
+              numberOfSpacesForRegisteredDisabledUserTypeIsAmbiguous
+            }
             onChange={(event) => {
               handleSetNumberOfSpacesForRegisteredDisabledUserType(
                 event.target.value,
