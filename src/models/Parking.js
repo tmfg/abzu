@@ -97,6 +97,8 @@ class Parking {
         ? this.numberOfSpacesForRegisteredDisabledUserType
         : null,
       parkingLayout: this.isParkAndRide ? this.parking.parkingLayout : null,
+      secure: parking.secure,
+      lighting: parking.lighting,
       totalCapacity: parking.totalCapacity,
       parkingVehicleTypes: parking.parkingVehicleTypes,
       hasExpired: hasExpired(parking.validBetween),
