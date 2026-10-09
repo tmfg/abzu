@@ -65,6 +65,7 @@ export interface Parking {
   isForPedalCycle?: boolean;
   parkingLayout?: string;
   parkingPaymentProcess?: string[];
+  paymentMethods?: string[];
   rechargingAvailable?: boolean | null;
   secure?: boolean | null;
   lighting?: string | null;
