@@ -93,6 +93,7 @@ class Parking {
       hasFullFieldSet: this.hasFullFieldSet,
       isForPedalCycle: this.isForPedalCycle,
       parkingPaymentProcess: parking.parkingPaymentProcess,
+      paymentMethods: parking.paymentMethods,
       rechargingAvailable: parking.rechargingAvailable,
       capacityEntries: this.hasFullFieldSet ? this.capacityEntries : [],
       parkingLayout: this.hasFullFieldSet ? this.parking.parkingLayout : null,

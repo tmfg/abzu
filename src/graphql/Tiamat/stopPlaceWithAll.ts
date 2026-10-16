@@ -401,6 +401,7 @@ const verboseParkingFragment = gql`
     parkingLayout
     parkingType
     parkingPaymentProcess
+    paymentMethods
     rechargingAvailable
     secure
     lighting

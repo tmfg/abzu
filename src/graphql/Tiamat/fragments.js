@@ -635,6 +635,7 @@ Fragments.parking = {
       parkingLayout
       parkingType
       parkingPaymentProcess
+      paymentMethods
       rechargingAvailable
       secure
       lighting
