@@ -408,7 +408,9 @@ const verboseParkingFragment = gql`
     covered
     organisationRef
     parkingProperties {
+      id
       spaces {
+        id
         parkingUserType
         parkingVehicleType
         parkingStayType
