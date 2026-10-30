@@ -557,7 +557,11 @@ helpers.mapParkingToVariables = (parkingArr, parentRef) => {
       parking.geometry = null;
     }
 
-    parking.accessibilityAssessment = source.accessibilityAssessment;
+    parking.accessibilityAssessment = source.accessibilityAssessment
+      ? formatAccessibilityAssessments(
+          JSON.parse(JSON.stringify(source.accessibilityAssessment)),
+        )
+      : source.accessibilityAssessment;
 
     // Tiamat replaces its whole list when the input carries one, and keeps the
     // stored list when the input omits it. Send the list only after an edit,
