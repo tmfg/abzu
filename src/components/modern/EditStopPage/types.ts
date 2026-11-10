@@ -81,6 +81,7 @@ export interface Parking {
   secure?: boolean | null;
   lighting?: string | null;
   covered?: string | null;
+  organisationRef?: string | null;
   totalCapacity?: number | string | null;
   parkingVehicleTypes?: string[];
   capacityEntries?: CapacityEntry[];
