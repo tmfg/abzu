@@ -35,6 +35,7 @@ import { parkingVehicleTypeLabel } from "../../../../models/parkingVehicleType";
 import { useAppDispatch } from "../../../../store/hooks";
 import { CenterMapButton, CopyIdButton } from "../../Shared";
 import { ParkingPanelProps } from "../types";
+import { CycleStorageFields } from "./CycleStorageFields";
 import { ParkAndRideFields } from "./ParkAndRideFields";
 import { ParkingCoveredField } from "./ParkingCoveredField";
 import { OpeningHoursFields } from "./OpeningHoursFields";
@@ -242,6 +243,12 @@ export const ParkingPanel: React.FC<ParkingPanelProps> = ({
           parking={parking}
           parkingIndex={parkingIndex}
           fieldDisabled={fieldDisabled}
+        />
+
+        <CycleStorageFields
+          parking={parking}
+          parkingIndex={parkingIndex}
+          disabled={fieldDisabled}
         />
       </Box>
 
